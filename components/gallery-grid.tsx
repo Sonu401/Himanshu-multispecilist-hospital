@@ -1,47 +1,106 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 
-const images = Array.from({ length: 9 }).map((_, i) => ({
-  src: `/placeholder.svg?height=640&width=960&query=hospital%20photo%20${i + 1}`,
-  alt: `Gallery photo ${i + 1}`,
-}))
+const galleryItems = [
+  {
+    id: 1,
+    src: "/blog1.jpeg",
+    caption: "State-of-the-art Operation Theater",
+  },
+  {
+    id: 2,
+    src: "/blog2.jpeg",
+    caption: "Modern Patient Ward",
+  },
+  {
+    id: 3,
+    src: "/blog3.jpeg",
+    caption: "Advanced Radiology Department",
+  },
+  {
+    id: 4,
+    src: "/blog4.jpeg",
+    caption: "Caring Maternity Ward",
+  },
+    {
+    id: 5,
+    src: "/blog1.jpeg",
+    caption: "24/7 Emergency Room",
+  },
+  {
+    id: 6,
+    src: "/blog3.jpeg",
+    caption: "Spacious Reception & Waiting Area",
+  },
+];
 
 export function GalleryGrid() {
-  const [active, setActive] = useState<number | null>(null)
-  return (
-    <section className="container mx-auto px-4 py-12">
-      <div className="mx-auto mb-8 max-w-2xl text-center">
-        <h2 className="text-2xl font-bold text-gray-900 md:text-3xl">Gallery</h2>
-        <p className="mt-2 text-gray-700">A glimpse into our facilities and team.</p>
-      </div>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {images.map((img, i) => (
-          <button key={i} className="group overflow-hidden rounded-lg border bg-gray-100" onClick={() => setActive(i)}>
-            <img
-              src={img.src || "/placeholder.svg"}
-              alt={img.alt}
-              className="h-56 w-full object-cover transition group-hover:scale-105"
-            />
-          </button>
-        ))}
-      </div>
+  const [selected, setSelected] = useState<number | null>(null);
 
-      {active !== null && (
-        <div
-          className="fixed inset-0 z-50 grid place-items-center bg-black/70 p-4"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Image preview"
-          onClick={() => setActive(null)}
+  return (
+    <section className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+      {galleryItems.map((item, i) => (
+        <motion.figure
+          key={item.id}
+          data-aos="zoom-in"
+          data-aos-delay={i * 100}
+          className="group relative overflow-hidden rounded-2xl shadow-lg bg-white hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+          onClick={() => setSelected(item.id)}
         >
-          <img
-            src={images[active].src || "/placeholder.svg"}
-            alt={images[active].alt}
-            className="max-h-[85vh] w-auto max-w-[90vw] rounded-lg border shadow-2xl"
+          {/* Image */}
+          <Image
+            src={item.src}
+            alt={item.caption}
+            width={600}
+            height={400}
+            className="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500"
           />
-        </div>
-      )}
+
+          {/* Overlay Caption */}
+          <figcaption className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent text-white py-3 px-4 opacity-100">
+            <p className="font-semibold text-base">{item.caption}</p>
+          </figcaption>
+        </motion.figure>
+      ))}
+
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {selected && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelected(null)}
+          >
+            <motion.div
+              className="relative max-w-4xl w-full rounded-2xl overflow-hidden"
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+            >
+              <Image
+                src={
+                  galleryItems.find((item) => item.id === selected)?.src || ""
+                }
+                alt="Gallery Image"
+                width={1200}
+                height={800}
+                className="w-full h-auto object-cover rounded-2xl"
+              />
+              <button
+                className="absolute top-3 right-3 bg-white/90 hover:bg-white text-blue-600 font-bold rounded-full w-8 h-8 flex items-center justify-center shadow-md"
+                onClick={() => setSelected(null)}
+              >
+                ✕
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
-  )
+  );
 }

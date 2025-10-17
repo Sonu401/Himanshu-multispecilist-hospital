@@ -1,11 +1,55 @@
-import Link from "next/link"
-import { FaHeartbeat, FaStethoscope, FaTooth, FaXRay } from "react-icons/fa"
+import Link from "next/link";
+import { FaBrain, FaBone, FaMicroscope, FaSyringe, FaVirus, FaDeaf, FaWalking, FaWater } from "react-icons/fa";
 
 const services = [
-  { slug: "cardiology", title: "Cardiology", icon: FaHeartbeat, desc: "Heart health diagnostics and treatments." },
-  { slug: "general-medicine", title: "General Medicine", icon: FaStethoscope, desc: "Primary care and consultations." },
-  { slug: "radiology", title: "Radiology", icon: FaXRay, desc: "Advanced imaging and diagnostics." },
-  { slug: "dentistry", title: "Dentistry", icon: FaTooth, desc: "Comprehensive dental care." },
+  {
+    slug: "neuro-surgery",
+    title: "Neuro Surgery",
+    icon: FaBrain,
+    desc: "Advanced brain and nervous system surgeries.",
+  },
+  {
+    slug: "orthopedic-surgery",
+    title: "Orthopedic Surgery",
+    icon: FaBone,
+    desc: "Bone, joint, and spine care with modern surgical methods.",
+  },
+  {
+    slug: "laparoscopic-surgery",
+    title: "Laparoscopic and Abdominal Surgery",
+    icon: FaMicroscope,
+    desc: "Minimally invasive and abdominal operations.",
+  },
+  {
+    slug: "plastic-surgery",
+    title: "Plastic Surgery / Skin and Venereal Diseases",
+    icon: FaSyringe,
+    desc: "Reconstructive, cosmetic, and skin-related treatments.",
+  },
+  {
+    slug: "hepatitis-b-treatment",
+    title: "Hepatitis-B Positive Treatment and Operations",
+    icon: FaVirus,
+    desc: "Comprehensive Hepatitis-B treatment and surgical procedures.",
+  },
+  {
+    slug: "ent-treatment",
+    title: "Ear, Nose and Throat Treatment",
+    icon: FaDeaf,
+    desc: "Diagnosis and treatment for ENT-related conditions.",
+  },
+  {
+    slug: "physiotherapy",
+    title: "Physiotherapy",
+    icon: FaWalking,
+    desc: "Rehabilitation and physical therapy for mobility and recovery.",
+  },
+  {
+    slug: "lithotripsy",
+    title: "Lithotripsy",
+    icon: FaWater,
+    desc: "Non-invasive treatment for kidney stones using shock waves.",
+  },
 ]
 
 export function ServicesGrid() {

@@ -21,7 +21,7 @@ export default function ContactPage() {
             <div className="overflow-hidden rounded-lg border">
               <iframe
                 title="Hospital location map"
-                src="https://www.google.com/maps?q=New+York&output=embed"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3561.8433515732804!2d83.40103247489047!3d26.781262865728245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39914500100ee867%3A0xa4f9b1372af830b1!2sHimanshu%20Multi%20Speciality%20Hospital!5e0!3m2!1sen!2sin!4v1760642644513!5m2!1sen!2sin"
                 className="h-80 w-full"
                 loading="lazy"
               />
@@ -29,9 +29,9 @@ export default function ContactPage() {
             <div className="mt-6 rounded-lg border bg-white p-4 shadow-sm">
               <h2 className="text-lg font-semibold text-gray-900">Contact Info</h2>
               <ul className="mt-2 space-y-1 text-sm text-gray-700">
-                <li>123 Health Ave, Wellness City</li>
-                <li>+1 (800) 555-0199</li>
-                <li>care@medicax.example</li>
+                <li>Fatima Hospital Road, Sangam Chauraha,Padari Bazar, Gorkhpur</li>
+                <li>+919005172912,9580753193</li>
+                <li>care@mhimanshuhospital.com</li>
               </ul>
             </div>
           </div>
